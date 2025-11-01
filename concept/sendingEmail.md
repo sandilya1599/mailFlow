@@ -13,11 +13,11 @@ The email system operates using different protocols for sending and receiving:
   - POP (Post Office Protocol): Downloads all emails upon server connection
   - IMAP (Internet Message Access Protocol): Downloads emails on-demand only
 
-## System Workflow
+## System Workflow - Only for Sending / Receiving Email
 
 ### Sender Flow
 1. User composes and sends email
-   - Email is stored in database (DB Storage)
+   - Email is stored in database (Mail Storage)
    - Email address is validated (Mail Validator)
    
 2. If email is valid:
@@ -36,20 +36,20 @@ The email system operates using different protocols for sending and receiving:
    - Spam detection is performed (Spam Checker)
    
 2. Storage and Delivery
-   - Email is saved to database (DB Writer)
+   - Email is saved to database (Mail Storage)
    - Client requests email updates via browser
-   - Updated email list is sent to recipient (List Sender)
+   - Updated email list is sent to recipient (Mail List Sender)
 
 ## Core Services
 
 ### Sending Services
-- DB Writer
-- Mail Validator
-- Mail Content Validator
-- Mail Sender
+- Mail Storage - stores the mail being sent to database
+- Mail Validator - Validates if receiver mail is present or not
+- Mail Content Validator - validates if content is malicious or not (optional)
+- Mail Sender - sends the email to receiver's mail
 
 ### Receiving Services
-- Mail Content Validator
-- Spam Checker
-- DB Writer
-- List Sender
+- Mail Content Validator - validates if content is malicious or not (optional)
+- Spam Checker - checks if email is spam
+- Mail Storage - stores received emails in database
+- Mail List Sender - end user interaction, sends list of emails for user preview.
